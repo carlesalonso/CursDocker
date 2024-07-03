@@ -5,6 +5,7 @@
 - [Docker init](#docker-init)
 - [Orquestració](#orquestració)
 - [Desplegament](#desplegament)
+- [Neteja equip](#neteja-equip)
   
 ## Xarxes a Docker
 
@@ -281,5 +282,31 @@ Un cop configurat, l'aplicació es desplegarà i estarà disponible a la URL que
 ![Azure-4](images/azure04.png)
 
 **CaaS**: aquest tercer model (Container as a Service) incorpora una capa d'abstracció més, que proporciona específicament una plataforma per executar i gestionar aplicacions containeritzades. Està dissenyat per facilitar la seva gestió, gestió i escala de contenidors i microserveis al núvol. En aquest model, Kubernetes és l'eina més utilitzada, tot i que també hi ha opcions per desplegar contenidors de forma individual com [Azure Container Instances](https://azure.microsoft.com/es-es/products/container-instances) o [AWS LightSail](https://lightsail.aws.amazon.com/ls/webapp/create/container-service?region=eu-west-1).
+
+[Tornar a l'índex](README.md)
+
+## Neteja equip
+
+Un cop hem acabat de treballar amb Docker, és important netejar l'equip per alliberar recursos. Per fer-ho, caldrà eliminar els contenidors, les xarxes i els volums que ja no necessitem.
+
+Amb la comanda:
+  
+```bash
+docker system df
+```
+
+Podrem veure quins recursos estan ocupant els diferents elements de Docker. Per eliminar-los, caldrà executar les comandes següents:
+
+```bash
+docker system prune
+```
+
+Amb això eliminem els contenidors aturats, les xarxes no utilitzades i les `dangling images`que són capes de les imatges que ja no s'utilitzen.
+
+Si volem eliminar a més totes les imatges no utilitzades, caldrà executar la comanda següent:
+
+```bash
+docker system prune --all
+```
 
 [Tornar a l'índex](README.md)
