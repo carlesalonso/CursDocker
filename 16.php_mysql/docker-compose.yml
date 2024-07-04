@@ -1,5 +1,3 @@
-version: '3.8'
-
 volumes:
   mysql-data:
     name: ${PROJECT_NAME}-data

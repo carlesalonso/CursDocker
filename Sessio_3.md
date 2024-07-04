@@ -23,10 +23,10 @@ Existeixen cinc tipus de xarxes: `bridge`, `host`, `macvlan`, `ipvlan`, `overlay
 
 - La xarxa `bridge` és la que hem vist abans i es comporta com la xarxa NAT dels virtualitzadors.
 - La xarxa `host` fa que el contenidor comparteixi la xarxa amb el host, sense cap aïllament, és a dir, el contenidor es comporta com si fos una aplicació més del host. Aquest mode només funciona amb Linux.
-- La xarxa `macvlan` fa que el contenidor tingui una adreça MAC pròpia i es comporti com un dispositiu físic. Aquest mode de xarxa és molt útil per a aplicacions que necessiten una adreça MAC pròpia, per exemple aplicacions que fan accés directe a la xarxa (habitualment codi antic). Aquest mode també funciona únicament amb Linux.
-- Xarxa 'ipvlan' fa que el contenidor tingui una adreça IP pròpia i es comporti com un dispositiu físic. Aquest mode de xarxa és molt útil per a aplicacions que necessiten una adreça IP pròpia, com per exemple, aplicacions que necessiten multicast. Aquest tipus de xarxa funcinoa amb Linux i amb Windows (únicament contenidors Windows).
-- La xarxa `overlay` fa que el contenidor es pugui comunicar amb altres contenidors que estiguin en altres hosts. És la xarxa que s'utilitza en orquestradors de contenidors com Docker Swarm o Kubernetes.
-- La xarxa `none` fa que el contenidor no tingui cap tipus de xarxa.
+- La xarxa `macvlan` assigna una adreça MAC pròpia i, per tant, el contenidor es comporta com un dispositiu físic. Aquest mode de xarxa és molt útil per a aplicacions que necessiten una adreça MAC pròpia, per exemple aplicacions que fan accés directe a la xarxa (habitualment codi antic). Aquest mode també funciona únicament amb Linux.
+- Xarxa `ipvlan` fa que el contenidor tingui una adreça IP pròpia i es comporti com un dispositiu lògic a la xarxa local. Aquest mode de xarxa és molt útil per a aplicacions que necessiten una adreça IP pròpia, com per exemple, aplicacions que necessiten multicast. Aquest tipus de xarxa funcinoa amb Linux i amb Windows (únicament contenidors Windows).
+- La xarxa `overlay` permet que el contenidor es pugui comunicar amb altres contenidors que estiguin en altres hosts. És la xarxa que s'utilitza en orquestradors de contenidors com Docker Swarm o Kubernetes.
+- La xarxa `none` serveix perquè el contenidor no tingui cap tipus de xarxa.
 
 Quan hi treballem amb Docker Desktop el més habitual és que sempre hi fem servir xarxes de tipus `bridge`.
 
@@ -44,7 +44,7 @@ Docker Compose és una eina que permet gestionar contenidors de forma declarativ
 
 Per crear un entorn de Docker Compose, haurem d'utilitzar un fitxer de configuració anomenat `docker-compose.yml` o `compose.yml`. Aquest arxiu definirà els diversos contenidors implicats, així com altres aspectes com són les xarxes, els volums, les variables d'entorn, etc.
 
-Les principas comandes de docker compose són les següents:
+Les principals comandes de `docker compose` són les següents:
 
 - `docker compose up`: crea i aixeca els serveis que es troben a l'arxiu `docker-compose.yaml`.
 - `docker compose down`: atura i elimina els serveis que es troben a l'arxiu `docker-compose.yaml`.
@@ -175,7 +175,7 @@ volumes:
   db:
 ```
 
-En aquest cas tenim un entorn per desplegar un WordPress, tenim dos serveis (contenidors), un amb el servidor web i un altre amb la base de dades. A més, tenim dos volums, un per la base de dades i un altre per les dades del WordPress. El servei de WordPress mapeja el port per ser accessible des de l'equip host i el servei de la base de dades no, perquè només es pot accedir des del servei de WordPress. Cal indicar, que tots dos contenidors, comparteixen la mateixa xarxa, per tant, es poden comunicar entre ells.
+En aquest cas, tenim un entorn per desplegar un WordPress, format per dos serveis (contenidors), un amb el servidor web i un altre amb la base de dades. A més, tenim dos volums, un per la base de dades i un altre per les dades del WordPress. El servei de WordPress mapeja el port per ser accessible des de l'equip host i el servei de la base de dades no, perquè només es pot accedir des del servei de WordPress. Cal indicar, que tots dos contenidors, comparteixen la mateixa xarxa, per tant, es poden comunicar entre ells.
 
 ## Docker init
 
@@ -224,7 +224,7 @@ El següent pas és aplicar els contenidors amb la filosofia dels microserveis, 
 
 Dockers Swarm i Kubernetes (eina desenvolupada per Google) són les dues opcions més habituals per aquesta tasca. Tot i que en els darrers anys, Kubernetes s'ha convertit en l'estàndard de facto per aquesta tasca, tot i això, Docker Swarm és una opció més senzilla i més fàcil d'implementar.
 
-Anteriorment, `Docker Swarm`era una eina independet, però a l'actualitat, forma per de Docker Engine, per tant, no cal instal·lar res addicional per utilitzar Docker Swarm.
+Anteriorment, `Docker Swarm`era una eina independet, però a l'actualitat, forma part de Docker Engine, per tant, no cal instal·lar res addicional per utilitzar Docker Swarm.
 
 ## Desplegament
 
